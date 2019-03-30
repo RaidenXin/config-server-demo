@@ -1,2 +1,27 @@
 server:
   port: 8620
+zuul:
+  ignoredServices: '*' #忽略所有未配置的service
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+  routes:
+    user-service: #自定义名称
+      path: /user/**
+      serviceId: service-user #/user/开头的路径转发至service-user微服务
+    api-a:
+      path: /member/**
+      service-id: service-member
+    api-b:
+      path: /order/**
+      service-id: service-order-feign
+hystrix: #hystrix配置
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2500
+ribbon: #ribbon负载均衡参数配置
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
