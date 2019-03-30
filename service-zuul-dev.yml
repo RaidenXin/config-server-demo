@@ -25,3 +25,7 @@ hystrix: #hystrix配置
 ribbon: #ribbon负载均衡参数配置
   ReadTimeout: 5000
   ConnectTimeout: 5000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka/
