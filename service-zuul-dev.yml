@@ -9,12 +9,19 @@ zuul:
     user-service: #自定义名称
       path: /user/**
       serviceId: service-user #/user/开头的路径转发至service-user微服务
+      sensitiveHeaders: "*"
     api-a:
       path: /member/**
       service-id: service-member
+      sensitiveHeaders: "*"
     api-b:
       path: /order/**
       service-id: service-order-feign
+      sensitiveHeaders: "*"
+    user-redis-session-service:
+      path: /user-session/**
+      serviceId: service-user-session-redis
+      sensitiveHeaders: "*"
 hystrix: #hystrix配置
   command:
     default:
